@@ -99,35 +99,39 @@ export default function Header() {
 
         {/* Mobile Menu - Slides Down */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          className={`lg:hidden overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-[85vh] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
           }`}
         >
           <div
-            className={`border-t border-white/20 z-10 ${
+            className={`z-10 min-h-0 rounded-2xl mt-4 border border-white/10 ${
               isScrolled
-                ? 'bg-[#0D1B2A]/95 backdrop-blur-md'
-                : 'bg-[#0D1B2A]'
+                ? 'bg-[#131d2e]/98 backdrop-blur-xl shadow-xl shadow-black/30'
+                : 'bg-[#131d2e]'
             }`}
           >
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
+            <div className="px-4 py-6 pb-8 flex flex-col">
+              <div className="space-y-4 text-left">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="block text-white hover:text-[#39FF14] transition-colors duration-200 font-medium py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="border-t border-white/20 pt-6 flex justify-center">
                 <Link
-                  key={link.name}
-                  href={link.href}
-                  className="block text-white hover:text-[#39FF14] transition-colors duration-200 font-medium py-2 text-center"
+                  href="/contact"
+                  className="bg-white text-[#0D1B2A] px-6 py-2.5 rounded-full font-semibold hover:bg-[#39FF14] hover:text-[#0D1B2A] transition-all duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {link.name}
+                  Get Started
                 </Link>
-              ))}
-              <Link
-                href="/contact"
-                className="block bg-white text-[#0D1B2A] px-6 py-2.5 rounded-full font-semibold text-center mt-4 hover:bg-[#39FF14] hover:text-[#0D1B2A] transition-all duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Get Started
-              </Link>
+              </div>
             </div>
           </div>
         </div>
